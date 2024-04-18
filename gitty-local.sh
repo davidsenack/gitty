@@ -43,17 +43,25 @@ cd -;
 scp "${PWD}/post-receive" $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR/hooks;
 ssh $REMOTE_PATH_1 "chmod 777 $REMOTE_PATH_2/$REMOTE_DIR/hooks/post-receive";
 
+# ------ SERVER SIDE ------
+#
+# Set variables and write to post-recieve
+
+cd -;
+echo "#!/bin/bash" >> vars;
+echo "" >> vars;
+echo "LOCAL_DIR=$LOCAL_DIR" >> vars; 
+echo "LOCAL_PATH=$LOCAL_PATH" >> vars;
+
+# Add tmp to post-recieve
+cat vars post-recieve > temp && mv temp post-recieve;
+
+
+#----- CLIENT SIDE -----
+
 # Push local to remote
 cd $LOCAL_PATH/$LOCAL_DIR;
 git add .;
 git commit -m "initalize project with gitty";
 git push -u origin $DEFAULT_BRANCH;
-
-# TODO:: Check that push succeeded
-
-
-
-        
-
-
 
