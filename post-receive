@@ -1,5 +1,15 @@
 #!/bin/bash
 
-FILE="/home/git/test.txt";
-touch $FILE;
-echo "Project Directory: $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR" >> $FILE;
+# REMOTE_PATH_2 = /var/www/git
+# REMOTE_DIR = gofetch.git
+
+REMOTE_HTML_DIR="/var/www/html";
+REMOTE_PROJ_HTML_DIR=$REMOTE_HTML_DIR/$REMOTE_DIR;
+
+mkdir $REMOTE_PROJ_HTML_DIR;
+cd $REMOTE_PROJ_HTML_DIR;
+stagit $REMOTE_PATH_2/$REMOTE_DIR;
+
+cd $REMOTE_HTML_DIR;
+stagit-index $REMOTE_PROJ_HTML_DIR > index.html;
+
