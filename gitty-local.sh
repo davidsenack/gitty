@@ -48,7 +48,7 @@ echo "LOCAL_PATH="$LOCAL_PATH"" >> $GITTY_DIR/vars;
 
 # Add tmp to post-receive
 cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive;
-
+rm $GITTY_DIR/vars;
 
 #----- CLIENT SIDE -----
 # Change back to gitty dir and copy post-receive hook to remote
