@@ -11,6 +11,7 @@ REMOTE_PATH_1="git@davidsenack.com";
 REMOTE_PATH_2="/var/www/git";
 
 DEFAULT_BRANCH="main";
+GITTY_DIR=$PWD;
 
 # Check if directory exists in location, if not create it.
 if [ ! -d $LOCAL_PATH/$LOCAL_DIR ]; then
@@ -47,14 +48,13 @@ ssh $REMOTE_PATH_1 "chmod 777 $REMOTE_PATH_2/$REMOTE_DIR/hooks/post-receive";
 #
 # Set variables and write to post-receive
 
-cd -;
-echo "#!/bin/bash" >> vars;
-echo "" >> vars;
-echo "LOCAL_DIR=$LOCAL_DIR" >> vars; 
-echo "LOCAL_PATH=$LOCAL_PATH" >> vars;
+echo "#!/bin/bash" >> $GITTY_DIR/vars;
+echo "" >> $GITTY_DIR/vars;
+echo "LOCAL_DIR="$LOCAL_DIR"" >> $GITTY_DIR/vars; 
+echo "LOCAL_PATH="$LOCAL_PATH"" >> $GITTY_DIR/vars;
 
 # Add tmp to post-receive
-cat vars post-receive > temp && mv temp post-receive;
+cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive;
 
 
 #----- CLIENT SIDE -----
