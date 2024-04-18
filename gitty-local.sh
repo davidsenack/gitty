@@ -48,7 +48,7 @@ echo "REMOTE_PATH_1="$REMOTE_PATH_1"" >> $GITTY_DIR/vars;
 echo "REMOTE_PATH_2="$REMOTE_PATH_2"" >> $GITTY_DIR/vars;
 
 # Add tmp to post-receive
-cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive_modified;
+cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive-modified;
 rm $GITTY_DIR/vars;
 
 #----- CLIENT SIDE -----
