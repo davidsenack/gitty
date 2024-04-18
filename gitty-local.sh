@@ -38,14 +38,14 @@ git remote add origin $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR;
 ssh $REMOTE_PATH_1 "if [ ! -d $REMOTE_PATH_2/$REMOTE_DIR ]; then mkdir $REMOTE_PATH_2/$REMOTE_DIR; fi";
 ssh $REMOTE_PATH_1 "cd $REMOTE_PATH_2/$REMOTE_DIR && git init --bare $REMOTE_PATH_2/$REMOTE_DIR";
 
-# Change back to gitty dir and copy post-recieve hook to remote
+# Change back to gitty dir and copy post-receive hook to remote
 cd -;
 scp "${PWD}/post-receive" $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR/hooks;
 ssh $REMOTE_PATH_1 "chmod 777 $REMOTE_PATH_2/$REMOTE_DIR/hooks/post-receive";
 
 # ------ SERVER SIDE ------
 #
-# Set variables and write to post-recieve
+# Set variables and write to post-receive
 
 cd -;
 echo "#!/bin/bash" >> vars;
@@ -53,8 +53,8 @@ echo "" >> vars;
 echo "LOCAL_DIR=$LOCAL_DIR" >> vars; 
 echo "LOCAL_PATH=$LOCAL_PATH" >> vars;
 
-# Add tmp to post-recieve
-cat vars post-recieve > temp && mv temp post-recieve;
+# Add tmp to post-receive
+cat vars post-receive > temp && mv temp post-receive;
 
 
 #----- CLIENT SIDE -----
