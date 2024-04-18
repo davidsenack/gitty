@@ -43,8 +43,9 @@ ssh $REMOTE_PATH_1 "cd $REMOTE_PATH_2/$REMOTE_DIR && git init --bare $REMOTE_PAT
 
 echo "#!/bin/bash" >> $GITTY_DIR/vars;
 echo "" >> $GITTY_DIR/vars;
-echo "LOCAL_DIR="$LOCAL_DIR"" >> $GITTY_DIR/vars; 
-echo "LOCAL_PATH="$LOCAL_PATH"" >> $GITTY_DIR/vars;
+echo "REMOTE_DIR="$REMOTE_DIR"" >> $GITTY_DIR/vars; 
+echo "REMOTE_PATH_1="$REMOTE_PATH_1"" >> $GITTY_DIR/vars;
+echo "REMOTE_PATH_2="$REMOTE_PATH_2"" >> $GITTY_DIR/vars;
 
 # Add tmp to post-receive
 cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive;
