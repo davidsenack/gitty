@@ -2,5 +2,4 @@
 
 FILE="/home/git/test.txt";
 touch $FILE;
-echo "This is a test...and it works!" >> $FILE;
 echo "Project Directory: $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR" >> $FILE;

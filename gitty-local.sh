@@ -48,13 +48,14 @@ echo "REMOTE_PATH_1="$REMOTE_PATH_1"" >> $GITTY_DIR/vars;
 echo "REMOTE_PATH_2="$REMOTE_PATH_2"" >> $GITTY_DIR/vars;
 
 # Add tmp to post-receive
-cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive;
+cat $GITTY_DIR/vars $GITTY_DIR/post-receive > $GITTY_DIR/temp && mv $GITTY_DIR/temp $GITTY_DIR/post-receive_modified;
 rm $GITTY_DIR/vars;
 
 #----- CLIENT SIDE -----
 # Change back to gitty dir and copy post-receive hook to remote
 cd -;
-scp "${PWD}/post-receive" $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR/hooks;
+scp "$GITTY_DIR/post-receive-modified" $REMOTE_PATH_1:$REMOTE_PATH_2/$REMOTE_DIR/hooks/post-receive;
+rm $GITTY_DIR/post-receive-modified;
 ssh $REMOTE_PATH_1 "chmod 777 $REMOTE_PATH_2/$REMOTE_DIR/hooks/post-receive";
 
 # Push local to remote
